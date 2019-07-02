@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import './css/dst/style.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+
+import TaskList from "./components/TaskList";
+import CheckList from './components/CheckList';
+import MainNavigation from "./components/MainNavigation";
+
+import {
+    BrowserRouter, Route, Switch
+} from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <header>
+                <h1>Markus Dashboard</h1>
+            </header>
+            <main>
+                <BrowserRouter>
+                    <MainNavigation />
+                    <Switch>
+                        <Route exact path="/" component={TaskList}/>
+                        <Route path="/checklist" component={CheckList}/>
+                    </Switch>
+                </BrowserRouter>
+            </main>
+        </div>
+    );
 }
 
 export default App;
