@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './css/dst/style.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import './css/style.scss';
 
 import TaskList from "./components/TaskList";
 import CheckList from './components/CheckList';
 import MainNavigation from "./components/MainNavigation";
+import {Container} from "react-bootstrap";
 
 import {
     BrowserRouter, Route, Switch
@@ -14,17 +14,21 @@ import {
 function App() {
     return (
         <div className="App">
-            <header>
-                <h1>Markus Dashboard</h1>
-            </header>
-            <main>
-                <BrowserRouter>
-                    <MainNavigation />
-                    <Switch>
-                        <Route exact path="/" component={TaskList}/>
-                        <Route path="/checklist" component={CheckList}/>
-                    </Switch>
-                </BrowserRouter>
+            <MainNavigation/>
+
+            <main className="pt-5">
+                    <BrowserRouter>
+                        <Switch>
+                            <Route exact path="/">
+                            </Route>
+                            <Route path="/checklist">
+                                <CheckList/>
+                            </Route>
+                            <Route path="/tasklist">
+                                <TaskList/>
+                            </Route>
+                        </Switch>
+                    </BrowserRouter>
             </main>
         </div>
     );

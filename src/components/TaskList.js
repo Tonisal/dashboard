@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Card, Row, ListGroup, Button, Col, Container, Form} from "react-bootstrap";
 
 class TaskList extends Component {
     state = {
@@ -6,11 +7,11 @@ class TaskList extends Component {
         inputValueNotes: '',
         inputValueRadio: 'taskEvent',
         tasks: [],
-    }
+    };
 
     /*Get Saved tasks from localStorage after reload/visit */
     componentDidMount() {
-        if(localStorage.tasks) {
+        if (localStorage.tasks) {
             const tasksFromLocalStorage = JSON.parse(localStorage.tasks);
             this.setState({tasks: tasksFromLocalStorage});
         }
@@ -20,6 +21,10 @@ class TaskList extends Component {
     componentDidUpdate() {
         const tasksToLocalStorage = JSON.stringify(this.state.tasks);
         localStorage.setItem('tasks', tasksToLocalStorage);
+    }
+
+    getCurrentDate = () => {
+
     }
 
     /*Save parameters (taskname, tasknotes ect.) when user is editing a task which he want to add*/
@@ -59,6 +64,7 @@ class TaskList extends Component {
     };
 
     deleteTaskFromList = (e) => {
+        console.log('hi');
         e.preventDefault();
         const taskToDelete = e.target.getAttribute('task');
         let tasks = this.state.tasks;
@@ -93,50 +99,97 @@ class TaskList extends Component {
 
     render() {
         let tasks = this.state.tasks;
-        let tasksMarkup = tasks.map(task =>
-            <tr key={task.taskName}>
-                <td><input taskattr='taskName' task={task.taskName} defaultValue={task.taskName} onChange={this.changeTask}/></td>
-                <td><input taskattr='taskNotes' task={task.taskName} defaultValue={task.taskNotes} onChange={this.changeTask}/></td>
-                <td>{task.taskType}</td>
-                <td>
-                    <form task={task.taskName} onSubmit={this.deleteTaskFromList}>
-                        <button type='submit'>Lösche Task</button>
-                    </form>
-                </td>
-            </tr>
+        let tasksMarkup;
+
+        tasksMarkup = tasks.map(task =>
+            <ListGroup.Item key={task.taskName} className="d-flex items-center justify-content-between">
+                <input taskattr='taskName' task={task.taskName} defaultValue={task.taskName} className="border-0 w-50" />
+                <form task={task.taskName} onSubmit={this.deleteTaskFromList}>
+                    <Button className="ml-auto" variant="danger" type="submit">Löschen</Button>
+                </form>
+            </ListGroup.Item>
         );
 
+        if (tasks.length===0) {
+            tasksMarkup = <h2>Keine Aufgaben vorhanden</h2>
+        }
+
         return (
-            <div className="tasks">
+            <Container className="tasks pt-5">
                 <h2>Task-Liste</h2>
                 <form className='addTask' onSubmit={this.addingTaskToList}>
                     <div>
-                        <input value={this.state.inputValueTaskName} id='taskName' type='text' onChange={this.handleInputValueChange}
-                               placeholder="Taskzusammenfassung" required/>
-                        <label htmlFor='taskEvent'>Event</label>
-                        <input id='taskEvent' onChange={this.handleInputValueChange} type='radio'
-                               name='taskEventOrDeadline'
-                               checked/>
-                        <label htmlFor='taskDeadline'>Deadline</label>
-                        <input id='taskDeadline' onChange={this.handleInputValueChange} type='radio'
-                               name='taskEventOrDeadline'/>
-                        <label htmlFor='taskWithoutDate'>Ohne Datum</label>
-                        <input id='taskWithoutDate' onChange={this.handleInputValueChange} type='radio'
-                               name='taskEventOrDeadline'/>
+                        <Form.Control value={this.state.inputValueTaskName} id='taskName' type='text'
+                                      onChange={this.handleInputValueChange}
+                                      placeholder="Taskzusammenfassung" required/>
+                        <div className="d-flex">
+                            <div>
+                                <label htmlFor='taskEvent'>Event</label>
+                                <input id='taskEvent' onChange={this.handleInputValueChange} type='radio'
+                                       name='taskEventOrDeadline'
+                                       checked/>
+                            </div>
+                            <div>
+                                <label htmlFor='taskDeadline'>Deadline</label>
+                                <input id='taskDeadline' onChange={this.handleInputValueChange} type='radio'
+                                       name='taskEventOrDeadline'/>
+                            </div>
+                            <div>
+                                <label htmlFor='taskWithoutDate'>Ohne Datum</label>
+                                <input id='taskWithoutDate' onChange={this.handleInputValueChange} type='radio'
+                                       name='taskEventOrDeadline'/>
+                            </div>
+                        </div>
                     </div>
                     <div className="tasks_date">
                         <input type='date'/>
                         <input type='time'/>
                     </div>
-                    <textarea id='taskNotes' value={this.state.inputValueNotes} onChange={this.handleInputValueChange} placeholder='Zusammenfassung'/>
-                    <button type="submit">Task hinzufügen</button>
+                    <Form.Control className="mb-3" as="textarea" id='taskNotes' value={this.state.inputValueNotes}
+                                  onChange={this.handleInputValueChange}
+                                  placeholder='Zusammenfassung'/>
+                    <Button variant="success" type="submit">Task hinzufügen</Button>
+
                 </form>
-                <table>
-                    <tbody>
-                    {tasksMarkup}
-                    </tbody>
-                </table>
-            </div>
+                <Row className="taskList">
+                    <Col xs="12">
+                        <Card className="flex-grow-1 mt-5">
+                            <Card.Header className="text-center">Tasks ohne festes Datum</Card.Header>
+                            <Card.Body>
+                                <ListGroup>
+                                    {tasksMarkup}
+                                </ListGroup>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col xs="12">
+                        <Card className="flex-grow-1 mt-5">
+                            <Card.Header className="text-center">Aufgaben Heute (13.08.2020)</Card.Header>
+                            <Card.Body>
+                                <ListGroup>
+                                    <ListGroup.Item className="d-flex items-center">
+                                        <span>Spüle ausräumen</span>
+                                        <button>Aufklappen</button>
+                                        <Button className="ml-auto" variant="danger">Löschen</Button>
+                                        <Button className="ml-4" variant="success">Fertig</Button>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item className="d-flex items-center">
+                                        <span>Spüle ausräumen</span>
+                                        <Button className="ml-auto" variant="danger">Löschen</Button>
+                                        <Button className="ml-4" variant="success">Fertig</Button>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item className="d-flex items-center">
+                                        <span>Spüle ausräumen</span>
+                                        <Button className="ml-auto" variant="danger">Löschen</Button>
+                                        <Button className="ml-4" variant="success">Fertig</Button>
+                                    </ListGroup.Item>
+
+                                </ListGroup>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
         )
     };
 }

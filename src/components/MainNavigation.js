@@ -1,21 +1,20 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import {BrowserRouter as Router} from "react-router-dom";
+import {Nav, Navbar, Container} from 'react-bootstrap';
 
 const MainNavigation = () => {
     return (
         <div>
-            <Router>
-                <ul className="mainNavigation">
-                    <ButtonToolbar>
-                        <Button variant="warning" href="/">Home</Button>
-                        <Button variant="warning" href="checklist">Check-Listen</Button>
-                        <Button variant="warning" href="tasklist">Task-Listen</Button>
-                        <Button variant="warning" href="depot">Depot</Button>
-                    </ButtonToolbar>
-                </ul>
-            </Router>
+            <Navbar bg="dark" variant="dark" fixed="top">
+                <Container>
+                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/tasklist">Tasklist</Nav.Link>
+                        <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    </Nav>
+                </Container>
+            </Navbar>
         </div>
     )
 }
