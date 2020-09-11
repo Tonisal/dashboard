@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 
 import { ReactComponent as Arrow } from '../../svg/arrow.svg';
-import TaskListItem from "./TaskListItem";
+import TaskListItem from "./templates/TaskListItem";
 
 class TaskList extends Component {
     state = {

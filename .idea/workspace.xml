@@ -20,12 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2f6dddf-5a66-4dc4-9e1f-1a417d45727f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/TaskList/TaskList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MainNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainNavigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TaskList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskList/TaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/TaskList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskList/TaskListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/templates/TaskListItem.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +51,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/TaskList/templates" />
       <recent name="$PROJECT_DIR$/src/components/TaskList" />
       <recent name="$PROJECT_DIR$/src/css" />
     </key>
@@ -98,7 +96,7 @@
       <workItem from="1597494422444" duration="10000" />
       <workItem from="1599653057392" duration="3664000" />
       <workItem from="1599718028908" duration="1551000" />
-      <workItem from="1599747528238" duration="8551000" />
+      <workItem from="1599747528238" duration="9538000" />
     </task>
     <servers />
   </component>

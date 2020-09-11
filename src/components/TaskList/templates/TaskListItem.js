@@ -13,7 +13,7 @@ import {
     Collapse
 } from "react-bootstrap";
 
-import {ReactComponent as Arrow} from '../../svg/arrow.svg';
+import {ReactComponent as Arrow} from '../../../svg/arrow.svg';
 
 const TaskListItem = (props) => {
     return (
