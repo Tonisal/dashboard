@@ -2,7 +2,7 @@ import React from 'react';
 
 import './css/style.scss';
 
-import TaskList from "./components/TaskList";
+import TaskList from "./components/TaskList/TaskList";
 import CheckList from './components/CheckList';
 import MainNavigation from "./components/MainNavigation";
 import {Container} from "react-bootstrap";

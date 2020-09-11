@@ -10,8 +10,6 @@ const MainNavigation = () => {
                     <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="/tasklist">Tasklist</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
