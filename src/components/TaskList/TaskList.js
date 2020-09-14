@@ -13,14 +13,14 @@ import {
     Collapse
 } from "react-bootstrap";
 
-import { ReactComponent as Arrow } from '../../svg/arrow.svg';
+import {ReactComponent as Arrow} from '../../svg/arrow.svg';
 import TaskListItem from "./templates/TaskListItem";
 
 class TaskList extends Component {
     state = {
         inputValueTaskName: '',
         inputValueDescription: '',
-        inputValueRadio: 'taskEvent',
+        inputValueRadio: 'taskWithoutDate',
         inputChangeTaskName: '',
         tasks: [],
     };
@@ -134,7 +134,7 @@ class TaskList extends Component {
         let tasksMarkup;
 
         tasksMarkup = tasks.map(task =>
-            <TaskListItem task={task}/>
+            <TaskListItem key={task.taskName} task={task}/>
         );
 
         if (tasks.length === 0) {
@@ -144,56 +144,74 @@ class TaskList extends Component {
         return (
             <Container className="tasks pt-5">
                 <h2>Task-Liste</h2>
-                <form className='addTask' onSubmit={this.addingTaskToList}>
-                    <div>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon1">Task Name</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl value={this.state.inputValueTaskName} id='taskName' type='text'
-                                         onChange={this.handleInputValueChange} required/>
-                        </InputGroup>
-                        <div className="eventTypeContainer mb-3 d-flex">
-                            <Card>
-                                <Card.Body as="label" htmlFor='taskWithoutDate'>
-                                    <span className="mr-2">Ohne Datum</span>
-                                    <input id='taskWithoutDate' onChange={this.handleInputValueChange} type='radio'
-                                           name='taskEventOrDeadline'
-                                           checked/>
-                                </Card.Body>
-                            </Card>
-                            <Card>
-                                <Card.Body as="label" htmlFor='taskEvent'>
-                                    <span className="mr-2">Event</span>
-                                    <input id='taskEvent' onChange={this.handleInputValueChange} type='radio'
-                                           name='taskEventOrDeadline'
-                                    />
-                                </Card.Body>
-                            </Card>
-                            <Card>
-                                <Card.Body as="label" htmlFor='taskDeadline'>
-                                    <span className="mr-2">Deadline</span>
-                                    <input id='taskDeadline' onChange={this.handleInputValueChange} type='radio'
-                                           name='taskEventOrDeadline'/>
-                                </Card.Body>
-                            </Card>
-                        </div>
-                    </div>
-                    <div className="tasks_date mb-3 d-flex">
-                        <Form.Control type='date'/>
-                        <Form.Control type='time'/>
-                    </div>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>Beschreibung</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl as="textarea" id='taskDescription' value={this.state.inputValueDescription}
-                                     onChange={this.handleInputValueChange}/>
-                    </InputGroup>
+                <Accordion>
+                    <Card className="shadow-none">
+                        <Accordion.Toggle as={Card.Header} eventKey="0" className="text-center">
+                            Task hinzufügen
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body>
+                                <form className='addTask' onSubmit={this.addingTaskToList}>
+                                    <div>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">Task Name</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl value={this.state.inputValueTaskName} id='taskName' type='text'
+                                                         onChange={this.handleInputValueChange} required/>
+                                        </InputGroup>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text>Beschreibung</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl as="textarea" id='taskDescription'
+                                                         value={this.state.inputValueDescription}
+                                                         onChange={this.handleInputValueChange}/>
+                                        </InputGroup>
+                                        <div className="eventTypeContainer mb-3 d-flex">
+                                            <Card>
+                                                <Card.Body as="label" htmlFor='taskWithoutDate'>
+                                                    <span className="mr-2">Ohne Datum</span>
+                                                    <input id='taskWithoutDate' onChange={this.handleInputValueChange}
+                                                           type='radio'
+                                                           name='taskEventOrDeadline'
+                                                           defaultChecked
+                                                           />
+                                                </Card.Body>
+                                            </Card>
+                                            <Card>
+                                                <Card.Body as="label" htmlFor='taskEvent'>
+                                                    <span className="mr-2">Event</span>
+                                                    <input id='taskEvent' onChange={this.handleInputValueChange}
+                                                           type='radio'
+                                                           name='taskEventOrDeadline'
+                                                    />
+                                                </Card.Body>
+                                            </Card>
+                                            <Card>
+                                                <Card.Body as="label" htmlFor='taskDeadline'>
+                                                    <span className="mr-2">Deadline</span>
+                                                    <input id='taskDeadline' onChange={this.handleInputValueChange}
+                                                           type='radio'
+                                                           name='taskEventOrDeadline'/>
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+                                    </div>
+                                    {this.state.inputValueRadio !== 'taskWithoutDate' ?
+                                    <div className="tasks_date mb-3 d-flex">
+                                        <Form.Control type='date'/>
+                                        <Form.Control type='time'/>
+                                    </div> : ''}
 
-                    <Button variant="success" type="submit">Task hinzufügen</Button>
-
-                </form>
+                                    {this.state.inputValueTaskName ? <Button variant="success" type="submit"
+                                            data-test={this.state.inputValueTaskName.length}>Task
+                                        hinzufügen</Button> : ''}
+                                </form>
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
                 <Row className="taskList">
                     <Col xs="12">
                         <Card className="flex-grow-1 mt-5">

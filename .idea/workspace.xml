@@ -22,7 +22,7 @@
     <list default="true" id="e2f6dddf-5a66-4dc4-9e1f-1a417d45727f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TaskList/TaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/TaskList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TaskList/TaskListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/templates/TaskListItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskList/templates/TaskListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/templates/TaskListItem.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,18 +97,21 @@
       <workItem from="1599653057392" duration="3664000" />
       <workItem from="1599718028908" duration="1551000" />
       <workItem from="1599747528238" duration="9538000" />
+      <workItem from="1599826204924" duration="5673000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -119,5 +122,9 @@
       <screen x="0" y="23" width="2560" height="1305" />
     </state>
     <state x="1260" y="548" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/2560.23.1792.1097/0.23.2560.1305@0.23.2560.1305" timestamp="1599755338949" />
+    <state x="1146" y="428" width="667" height="486" key="find.popup" timestamp="1599907202852">
+      <screen x="0" y="23" width="2560" height="1318" />
+    </state>
+    <state x="1146" y="428" width="667" height="486" key="find.popup/0.23.2560.1318@0.23.2560.1318" timestamp="1599907202852" />
   </component>
 </project>

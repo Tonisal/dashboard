@@ -18,7 +18,7 @@ import {ReactComponent as Arrow} from '../../../svg/arrow.svg';
 const TaskListItem = (props) => {
     return (
         <Accordion>
-            <ListGroup.Item key={props.task.taskName} className="">
+            <ListGroup.Item className="">
                 <div className="d-flex items-center justify-content-between">
                     <InputGroup className="w-50 position-relative">
                         <Form.Control id="changeTaskName" taskattr='taskName' task={props.task.taskName}
