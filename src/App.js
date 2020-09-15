@@ -2,10 +2,9 @@ import React from 'react';
 
 import './css/style.scss';
 
-import TaskList from "./components/TaskList/TaskList";
+import Tasks from "./components/TaskList/Tasks";
 import CheckList from './components/CheckList';
 import MainNavigation from "./components/MainNavigation";
-import {Container} from "react-bootstrap";
 
 import {
     BrowserRouter, Route, Switch
@@ -25,7 +24,7 @@ function App() {
                                 <CheckList/>
                             </Route>
                             <Route path="/tasklist">
-                                <TaskList/>
+                                <Tasks/>
                             </Route>
                         </Switch>
                     </BrowserRouter>

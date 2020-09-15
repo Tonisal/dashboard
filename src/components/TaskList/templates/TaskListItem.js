@@ -1,16 +1,11 @@
 import React, {Component} from 'react';
 import {
     Card,
-    Row,
     ListGroup,
     Button,
-    Col,
-    Container,
     Form,
     InputGroup,
-    FormControl,
     Accordion,
-    Collapse
 } from "react-bootstrap";
 
 import {ReactComponent as Arrow} from '../../../svg/arrow.svg';
@@ -21,10 +16,10 @@ const TaskListItem = (props) => {
             <ListGroup.Item className="">
                 <div className="d-flex items-center justify-content-between">
                     <InputGroup className="w-50 position-relative">
-                        <Form.Control id="changeTaskName" taskattr='taskName' task={props.task.taskName}
+                        <Form.Control id="changeTaskName" taskattr='taskName' data-task={props.task.taskName}
                                       defaultValue={props.task.taskName}
                                       className="border-0"/>
-                        <form className="position-absolute right" task={props.task.taskName}>
+                        <form className="position-absolute right" data-task={props.task.taskName}>
                             <Button variant="link" className="border-0" type="submit">speichern</Button>
                         </form>
                     </InputGroup>
@@ -33,7 +28,7 @@ const TaskListItem = (props) => {
                                           className="accordion__toggle">
                             <Arrow/>
                         </Accordion.Toggle> : ''}
-                    <form task={props.task.taskName}>
+                    <form data-task={props.task.taskName}>
                         <Button className="ml-auto" variant="danger" type="submit">Löschen</Button>
                     </form>
                 </div>
