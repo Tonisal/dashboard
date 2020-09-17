@@ -53,8 +53,6 @@ class CheckList extends Component {
         this.setState({
             lists: lists,
         });
-
-        console.log(this.state.lists);
     }
 
     handleFormSubmit = (e) => {
@@ -122,13 +120,10 @@ class CheckList extends Component {
             const lists = this.state.lists;
             const currentList = this.state.listToShow;
             const itemToDelete = e.target.getAttribute('item');
-            console.log(itemToDelete);
 
             for (let i = 0; i < lists.length; i++) {
                 if (lists[i].name === currentList) {
                     for (let ii = 0; ii < lists[i].items.length; ii++) {
-                        console.log(lists[i].items.length);
-                        console.log(lists[i].items[ii]);
                         if (lists[i].items[ii].itemName === itemToDelete) {
                             lists[i].items.splice([ii], 1);
                         }
@@ -157,11 +152,6 @@ class CheckList extends Component {
             });
         }
     };
-
-    uncheckAllCheckboxes = () => {
-        console.log('uncheck all');
-    };
-
 
     render() {
         let lists = this.state.lists;

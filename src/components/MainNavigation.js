@@ -1,5 +1,4 @@
 import React from 'react';
-import {BrowserRouter as Router} from "react-router-dom";
 import {Nav, Navbar, Container} from 'react-bootstrap';
 
 const MainNavigation = () => {
@@ -7,9 +6,9 @@ const MainNavigation = () => {
         <div>
             <Navbar bg="dark" variant="dark" fixed="top">
                 <Container>
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                    <Navbar.Brand href="/">Dashboard</Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/tasklist">Tasklist</Nav.Link>
+                        <Nav.Link href="/tasklist">Offene Tasks</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container } from "react-bootstrap";
+import {Container} from "react-bootstrap";
 
 import AddNewTaskForm from "./templates/AddNewTaskForm";
 import TaskList from "./templates/TaskList";
@@ -23,13 +23,8 @@ class Tasks extends Component {
         localStorage.setItem('tasks', tasksToLocalStorage);
     }
 
-    getCurrentDate = () => {
-
-    }
-
     /*Save parameters (taskname, tasknotes ect.) when user is editing a task which he want to add*/
     handleInputValueChange = (e) => {
-        console.log('hi');
 
         if (e.target.id === 'taskName') {
             this.setState({
@@ -44,7 +39,6 @@ class Tasks extends Component {
                 inputChangeTaskName: e.target.value
             });
         } else {
-            console.log(e.target.id);
             this.setState({
                 inputValueRadio: e.target.id
             });
@@ -52,21 +46,15 @@ class Tasks extends Component {
     };
 
     addingTaskToList = (taskToAdd) => {
-        console.log(taskToAdd);
         this.setState({
             tasks: [
                 ...this.state.tasks,
                 taskToAdd
             ],
         });
-
-        console.log(this.state);
     };
 
-    deleteTaskFromList = (e) => {
-        console.log('hi');
-        e.preventDefault();
-        const taskToDelete = e.target.getAttribute('task');
+    deleteTask = (taskToDelete) => {
         let tasks = this.state.tasks;
 
         for (let i = 0; i < tasks.length; i++) {
@@ -80,37 +68,24 @@ class Tasks extends Component {
         }
     };
 
-    test = () => {
-        console.log('hi');
-    }
-
-    changeTaskName = (e) => {
-        e.preventDefault();
-        if (this.state.inputChangeTaskName.length) {
-            const taskToChange = e.target.getAttribute('task');
-            //const attrToChange = e.target.getAttribute('taskattr');
-            const attrToChange = "taskName";
-
-            let tasks = this.state.tasks;
-            for (let i = 0; i < tasks.length; i++) {
-                if (tasks[i].taskName === taskToChange) {
-                    tasks[i][attrToChange] = this.state.inputChangeTaskName;
-                }
+    changeTaskName = (taskToChange, newTaskName) => {
+        let tasks = this.state.tasks;
+        for (let i = 0; i < tasks.length; i++) {
+            if (tasks[i].taskName === taskToChange) {
+                tasks[i].taskName = newTaskName;
             }
-            console.log(tasks);
-            this.setState({
-                tasks: tasks,
-                inputChangeTaskName: '',
-            });
         }
+
+        this.setState({
+            tasks: tasks,
+        });
     };
 
     render() {
         return (
             <Container className="tasks pt-5">
-                <h2>Task-Liste</h2>
-                <AddNewTaskForm addingTaskToList = {this.addingTaskToList}/>
-                <TaskList tasks={this.state.tasks}/>
+                <AddNewTaskForm addingTaskToList={this.addingTaskToList}/>
+                <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} changeTaskName={this.changeTaskName}/>
             </Container>
         )
     };

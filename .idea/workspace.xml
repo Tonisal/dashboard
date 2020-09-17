@@ -20,12 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2f6dddf-5a66-4dc4-9e1f-1a417d45727f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/TaskList/Tasks.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TaskList/TaskList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TaskList/templates/AddTask.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CheckList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CheckList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainNavigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskList/Tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/Tasks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskList/templates/AddNewTaskForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/templates/AddNewTaskForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TaskList/templates/TaskList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/templates/TaskList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TaskList/templates/TaskListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TaskList/templates/TaskListItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +53,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -103,33 +106,39 @@
       <workItem from="1599826204924" duration="5673000" />
       <workItem from="1600094130419" duration="2958000" />
       <workItem from="1600133805479" duration="1740000" />
+      <workItem from="1600163854182" duration="5782000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="414" y="327" key="SettingsEditor" timestamp="1600163877315">
+      <screen x="0" y="23" width="2560" height="1305" />
+    </state>
+    <state x="414" y="327" key="SettingsEditor/2560.23.1792.1097/0.23.2560.1305@0.23.2560.1305" timestamp="1600163877315" />
     <state x="1260" y="548" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599755338949">
       <screen x="0" y="23" width="2560" height="1305" />
     </state>
     <state x="1260" y="548" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/2560.23.1792.1097/0.23.2560.1305@0.23.2560.1305" timestamp="1599755338949" />
-    <state x="1146" y="428" width="667" height="486" key="find.popup" timestamp="1599907202852">
-      <screen x="0" y="23" width="2560" height="1318" />
+    <state x="802" y="335" width="568" height="490" key="find.popup" timestamp="1600244332770">
+      <screen x="0" y="23" width="1792" height="1015" />
     </state>
+    <state x="802" y="335" width="568" height="490" key="find.popup/0.23.1792.1015@0.23.1792.1015" timestamp="1600244332770" />
     <state x="1146" y="428" width="667" height="486" key="find.popup/0.23.2560.1318@0.23.2560.1318" timestamp="1599907202852" />
+    <state x="1146" y="424" width="667" height="490" key="find.popup/2560.23.1792.1097/0.23.2560.1305@0.23.2560.1305" timestamp="1600164740622" />
   </component>
 </project>

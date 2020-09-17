@@ -51,9 +51,9 @@ class AddNewTaskForm extends React.Component {
 
     render() {
         return (
-            <Accordion>
+            <Accordion className="addNewTaskForm">
                 <Card className="shadow-none">
-                    <Accordion.Toggle as={Card.Header} eventKey="0" className="text-center">
+                    <Accordion.Toggle as={Card.Header} eventKey="0" className="text-center cursor-pointer">
                         Task hinzufügen
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
@@ -76,7 +76,7 @@ class AddNewTaskForm extends React.Component {
                                                      onChange={this.handleInputValueChange}/>
                                     </InputGroup>
                                     <div className="eventTypeContainer mb-3 d-flex">
-                                        <Card>
+                                        <Card className="mr-1">
                                             <Card.Body as="label" htmlFor='taskWithoutDate'>
                                                 <span className="mr-2">Ohne Datum</span>
                                                 <input id='taskWithoutDate' onChange={this.handleInputValueChange}
@@ -86,7 +86,7 @@ class AddNewTaskForm extends React.Component {
                                                 />
                                             </Card.Body>
                                         </Card>
-                                        <Card>
+                                        <Card className="mx-1">
                                             <Card.Body as="label" htmlFor='taskEvent'>
                                                 <span className="mr-2">Event</span>
                                                 <input id='taskEvent' onChange={this.handleInputValueChange}
@@ -95,7 +95,7 @@ class AddNewTaskForm extends React.Component {
                                                 />
                                             </Card.Body>
                                         </Card>
-                                        <Card>
+                                        <Card className="ml-1">
                                             <Card.Body as="label" htmlFor='taskDeadline'>
                                                 <span className="mr-2">Deadline</span>
                                                 <input id='taskDeadline' onChange={this.handleInputValueChange}
@@ -107,8 +107,18 @@ class AddNewTaskForm extends React.Component {
                                 </div>
                                 {this.state.inputValueRadio !== 'taskWithoutDate' ?
                                     <div className="tasks_date mb-3 d-flex">
-                                        <Form.Control type='date'/>
-                                        <Form.Control type='time'/>
+                                        <InputGroup className="mr-1">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">Datum</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl type="date"/>
+                                        </InputGroup>
+                                        <InputGroup className="ml-1">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">Uhrzeit</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl type="time"/>
+                                        </InputGroup>
                                     </div> : ''}
 
                                 {this.state.inputValueTaskName ? <Button variant="success" type="submit"
