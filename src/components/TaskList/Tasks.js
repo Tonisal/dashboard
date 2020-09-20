@@ -3,6 +3,7 @@ import {Container} from "react-bootstrap";
 
 import AddNewTaskForm from "./templates/AddNewTaskForm";
 import TaskList from "./templates/TaskList";
+import axios from 'axios';
 
 class Tasks extends Component {
     state = {
@@ -11,39 +12,22 @@ class Tasks extends Component {
 
     /*Get Saved tasks from localStorage after reload/visit */
     componentDidMount() {
-        if (localStorage.tasks) {
+        {{/*if (localStorage.tasks) {
             const tasksFromLocalStorage = JSON.parse(localStorage.tasks);
             this.setState({tasks: tasksFromLocalStorage});
-        }
+        }*/}}
+
+        this.getTasksFromServer();
     }
 
-    /*Save tasks in LocalStorage */
-    componentDidUpdate() {
-        const tasksToLocalStorage = JSON.stringify(this.state.tasks);
-        localStorage.setItem('tasks', tasksToLocalStorage);
-    }
-
-    /*Save parameters (taskname, tasknotes ect.) when user is editing a task which he want to add*/
-    handleInputValueChange = (e) => {
-
-        if (e.target.id === 'taskName') {
-            this.setState({
-                inputValueTaskName: e.target.value
-            });
-        } else if (e.target.id === 'taskDescription') {
-            this.setState({
-                inputValueDescription: e.target.value
-            });
-        } else if (e.target.id === 'changeTaskName') {
-            this.setState({
-                inputChangeTaskName: e.target.value
-            });
-        } else {
-            this.setState({
-                inputValueRadio: e.target.id
-            });
-        }
+    getTasksFromServer = async() => {
+        const res = await axios.get(`http://localhost:3020/tasks`);
+        const data = res.data;
+        this.setState({
+            tasks: data.tasks,
+        })
     };
+
 
     addingTaskToList = (taskToAdd) => {
         this.setState({
