@@ -5,7 +5,7 @@ const cors = require('cors');
 const port = 3020;
 
 app.use(cors({
-    origin: 'http://localhost:3010/'
+    origin: 'http://localhost:3010'
 }));
 
 const getDataFromFile = async (path) => {
