@@ -17,7 +17,7 @@ function App() {
         <div className="App">
             <MainNavigation/>
             <main className="pt-5">
-                    <BrowserRouter>
+                    <BrowserRouter basename="dashboard">
                         <Switch>
                             <Route exact path="/">
                             </Route>

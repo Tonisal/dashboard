@@ -13,7 +13,7 @@ const MainNavigation = () => {
                     <BrowserRouter>
                         <Navbar.Brand href="/">Dashboard</Navbar.Brand>
                         <Nav className="mr-auto">
-                            <Link to="/tasklist">Offene Tasks</Link>
+                            <Link to="/tasklist">Offene Task</Link>
                             <Nav.Link href="/tasklist">Offene Tasks</Nav.Link>
                             <Nav.Link href="/checklist">Checklisten</Nav.Link>
                             <Nav.Link href="/kackundsach">Kack</Nav.Link>
