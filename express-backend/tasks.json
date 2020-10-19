@@ -1,14 +1,1 @@
-{
-  "tasks": [
-    {
-      "taskName": "Papa schreiben",
-      "taskDescription": "",
-      "taskType": "taskWithoutDate"
-    },
-    {
-      "taskName": "Papa schreiben2",
-      "taskDescription": "",
-      "taskType": "taskWithoutDate"
-    }
-  ]
-}
+{"tasks":[{"taskName":"Nochmal wegen der Küche nachfragen wenn keine Rückmeldung","taskDescription":"","taskType":"taskEvent","taskDate":"2020-09-25","taskTime":"16:00"},{"taskName":"Lampe Bad","taskDescription":"","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Klimmzugstange aufhängen","taskDescription":"","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Kletterschuhe","taskDescription":"https://www.sport-schuster.de/Red-Chili-Fusion-VCR.html?varID=120931722e16e711b3eb001b21bc4569","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Friseur","taskDescription":"Idee: https://friseurundbarbier.de/","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Wintertour planen","taskDescription":"Dortmunder Hütte wäre meine Idee\n","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Verbesserungen TaskListe","taskDescription":"-optisches Feedback wenn Task hinzugekommen\n-optisches Feedback wenn Task gelöscht","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Termin Herzzentrum","taskDescription":"","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Susi: Rechnung stellen/klären","taskDescription":"","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Wegen Tattoo Gedanken machen","taskDescription":"Was soll drauf kommen:\n\nIdee: Now I became death, the destroyer of worlds\n","taskType":"taskWithoutDate","taskDate":"","taskTime":""},{"taskName":"Sich über ein Auto Gedanken machen","taskDescription":"","taskType":"taskWithoutDate","taskDate":"","taskTime":""}]}

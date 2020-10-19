@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 
-import Button from 'react-bootstrap/Button';
-import FormControl from 'react-bootstrap/FormControl';
-import ListGroup from 'react-bootstrap/ListGroup';
-import InputGroup from 'react-bootstrap/InputGroup';
+import {
+    Button,
+    InputGroup,
+    FormControl,
+    ListGroup,
+    Container,
+    Card
+} from "react-bootstrap";
+import axios from "axios";
 
 class CheckList extends Component {
     state = {
@@ -13,21 +18,23 @@ class CheckList extends Component {
         lists: [],
     };
 
-    componentDidUpdate() {
-        const listsToLocalStorage = JSON.stringify(this.state.lists);
-        localStorage.setItem('lists', listsToLocalStorage);
+    componentDidMount() {
+        this.getChecklistsFromServer();
     }
 
-    componentDidMount() {
-        if (localStorage.lists) {
-            const listsFromLocalStorage = JSON.parse(localStorage.lists);
-            this.setState({lists: listsFromLocalStorage});
-        }
-    }
+    getChecklistsFromServer = async () => {
+        console.log('get');
+        const res = await axios.get(`http://localhost:3020/checklists`);
+        const data = res.data.lists;
+       this.setState({
+           lists: data,
+           listToShow: data[0].name,
+       })
+    };
 
     handleTextInputChange = (e) => {
         const text = e.target.value;
-        const target = e.target.getAttribute('target');
+        const target = e.target.getAttribute('data-target');
 
         this.setState({
             [target]: text,
@@ -57,7 +64,7 @@ class CheckList extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        const target = e.target.getAttribute('target');
+        const target = e.target.getAttribute('data-target');
 
         // Submit new List
         if (target === 'addList') {
@@ -96,6 +103,7 @@ class CheckList extends Component {
 
         // Add item to list
         else if (target === 'addItem') {
+            console.log('hi');
             const lists = this.state.lists;
             const currentList = this.state.listToShow;
             let itemToAdd = {
@@ -123,11 +131,7 @@ class CheckList extends Component {
 
             for (let i = 0; i < lists.length; i++) {
                 if (lists[i].name === currentList) {
-                    for (let ii = 0; ii < lists[i].items.length; ii++) {
-                        if (lists[i].items[ii].itemName === itemToDelete) {
-                            lists[i].items.splice([ii], 1);
-                        }
-                    }
+                    lists[i].items = lists[i].items.filter(listItem => listItem.itemName !== itemToDelete);
                 }
             }
 
@@ -160,15 +164,21 @@ class CheckList extends Component {
 
         // Show all existing Lists
         let listsmarkup = lists.map(list =>
-            <li key={list.name}>
-                <form onSubmit={this.handleFormSubmit} target="selectList" list={list.name}>
-                    <Button variant="primary mr-2" type="submit">{list.name}</Button>
+            <li className="position-relative mr-3" key={list.name}>
+                <form onSubmit={this.handleFormSubmit} data-target="selectList" list={list.name}>
+                    <Button variant="primary" type="submit">{list.name}</Button>
                 </form>
-                <form onSubmit={this.handleFormSubmit} target="deleteList" list={list.name}>
-                    <button type="submit">Löschen</button>
+                <form onSubmit={this.handleFormSubmit} data-target="deleteList" list={list.name}>
+                    <button className="checklist__delete-list-button" type="submit">
+                        X
+                    </button>
                 </form>
             </li>
         );
+
+        if (!lists.length) {
+            listsmarkup = <li><h2 className="mb-0 text-center">Keine Listen vorhanden</h2></li>;
+        }
 
 
         //Show all items of a list
@@ -181,52 +191,59 @@ class CheckList extends Component {
 
         let checklistmarkup = itemsToShow.map(item =>
             <ListGroup.Item key={item.itemName} className="checklist__item">
-                <input id={item.itemName} item={item.itemName} type="checkbox" onChange={this.handleCheckboxInputChange} checked={item.checked}/>
+                <input id={item.itemName} item={item.itemName} type="checkbox" onChange={this.handleCheckboxInputChange}
+                       checked={item.checked}/>
                 <label htmlFor={item.itemName}>{item.itemName}</label>
-                <form item={item.itemName} target="deleteItem" onSubmit={this.handleFormSubmit}>
+                <form item={item.itemName} data-target="deleteItem" onSubmit={this.handleFormSubmit}>
                     <Button variant="secondary" type="submit">Löschen</Button>
                 </form>
             </ListGroup.Item>
         );
 
         return (
-            <div className="checklist">
-                <div className="checklist__addList mb-5">
-                    <form onSubmit={this.handleFormSubmit} target="addList">
-                        <InputGroup className="mb-3">
-                            <FormControl placeholder="Füge Liste hinzu" type="text"
-                                         onChange={this.handleTextInputChange}
-                                         target="listInputValue"
-                                         value={this.state.listInputValue}/>
-                            <InputGroup.Append>
-                                <Button variant="success" type="submit">Button</Button>
-                            </InputGroup.Append>
-                        </InputGroup>
+            <Container className="checklist pt-5">
+                <Card className="checklist__addList mb-5">
+                    <Card.Header className="text-center">Checklisten - Übersicht</Card.Header>
+                    <Card.Body>
+                        <form onSubmit={this.handleFormSubmit} data-target="addList">
+                            <InputGroup className="mb-3">
+                                <FormControl placeholder="Füge Liste hinzu" type="text"
+                                             onChange={this.handleTextInputChange}
+                                             data-target="listInputValue"
+                                             value={this.state.listInputValue}/>
+                                <InputGroup.Append>
+                                    <Button variant="success" type="submit">Button</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </form>
+                        <ul className="checklist__showLists mb-0">
+                            {listsmarkup}
+                        </ul>
+                    </Card.Body>
+                </Card>
+                <div className="d-flex mb-3">
+                    <form onSubmit={this.uncheckAllCheckboxes}>
+                        <Button className="mr-3" variant="danger">Alles abwählen</Button>
                     </form>
-                    <ul className="checklist__showLists">
-                        {listsmarkup}
-                    </ul>
-                </div>
-                <form onSubmit={this.uncheckAllCheckboxes}>
-                <Button variant="danger">Alles abwählen</Button>
-                </form>
-                <div className="checklist__addItem">
-                    <form target="addItem" onSubmit={this.handleFormSubmit}>
-                        <InputGroup className="mb-3">
-                            <FormControl placeholder="Füge Item hinzu" type="text" target="itemInputValue"
-                                         onChange={this.handleTextInputChange}
-                                         value={this.state.itemInputValue}
-                            />
-                            <InputGroup.Append>
-                                <Button variant="success" type="submit">Button</Button>
-                            </InputGroup.Append>
-                        </InputGroup>
-                    </form>
+
+                    <div className="checklist__addItem flex-grow-1">
+                        <form data-target="addItem" onSubmit={this.handleFormSubmit}>
+                            <InputGroup>
+                                <FormControl placeholder="Füge Item hinzu" type="text" data-target="itemInputValue"
+                                             onChange={this.handleTextInputChange}
+                                             value={this.state.itemInputValue}
+                                />
+                                <InputGroup.Append>
+                                    <Button variant="success" type="submit">Button</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </form>
+                    </div>
                 </div>
                 <ListGroup>
                     {checklistmarkup}
                 </ListGroup>
-            </div>
+            </Container>
         )
     }
 }

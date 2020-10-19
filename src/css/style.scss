@@ -129,6 +129,20 @@ h2 {
   }
 }
 
+.checklist__delete-list-button {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: white;
+  right: -0.75rem;
+  top: -0.75rem;
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 // Override default Bootstrap variables before the import
 

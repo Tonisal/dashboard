@@ -1,0 +1,30 @@
+{
+  "lists": [
+    {
+      "name": "Wandern",
+      "items": [
+        {
+          "itemName": "Zefix 1",
+          "checked": false
+        },
+        {
+          "itemName": "Zefix ",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "name": "oh gott",
+      "items": [
+        {
+          "itemName": "Noch ne Liste",
+          "checked": false
+        },
+        {
+          "itemName": "ZEfix 3",
+          "checked": false
+        }
+      ]
+    }
+  ]
+}

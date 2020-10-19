@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 
 import AddNewTaskForm from "./templates/AddNewTaskForm";
 import TaskList from "./templates/TaskList";
@@ -12,15 +12,11 @@ class Tasks extends Component {
 
     /*Get Saved tasks from localStorage after reload/visit */
     componentDidMount() {
-        {{/*if (localStorage.tasks) {
-            const tasksFromLocalStorage = JSON.parse(localStorage.tasks);
-            this.setState({tasks: tasksFromLocalStorage});
-        }*/}}
-
         this.getTasksFromServer();
     }
 
-    getTasksFromServer = async() => {
+    getTasksFromServer = async () => {
+        console.log('get');
         const res = await axios.get(`http://localhost:3020/tasks`);
         const data = res.data;
         this.setState({
@@ -29,47 +25,56 @@ class Tasks extends Component {
     };
 
 
-    addingTaskToList = (taskToAdd) => {
-        this.setState({
-            tasks: [
-                ...this.state.tasks,
-                taskToAdd
-            ],
-        });
-    };
-
-    deleteTask = (taskToDelete) => {
-        let tasks = this.state.tasks;
-
-        for (let i = 0; i < tasks.length; i++) {
-            if (taskToDelete === tasks[i].taskName) {
-                tasks.splice(i, 1);
-
-                this.setState({
-                    tasks: tasks
-                });
-            }
+    addingTaskToList = async (taskToAdd) => {
+        const result = await axios.post(`http://localhost:3020/addTask`, {taskToAdd});
+        if (result.status === 200) {
+            let tasks = this.state.tasks;
+            tasks.push(taskToAdd);
+            this.setState({
+                tasks: tasks
+            })
         }
     };
 
-    changeTaskName = (taskToChange, newTaskName) => {
-        let tasks = this.state.tasks;
-        for (let i = 0; i < tasks.length; i++) {
-            if (tasks[i].taskName === taskToChange) {
-                tasks[i].taskName = newTaskName;
-            }
+    deleteTask = async (taskToDelete) => {
+        console.log(taskToDelete);
+        const result = await axios.post(`http://localhost:3020/deleteTask`, {taskToDelete});
+
+        if (result.status === 200) {
+            await this.getTasksFromServer();
         }
 
-        this.setState({
-            tasks: tasks,
-        });
+    };
+
+    changeTaskName = async (taskToChange, newTaskName) => {
+        console.log(taskToChange, newTaskName);
+        const result = await axios.post(`http://localhost:3020/changeTaskName`, {taskToChange, newTaskName});
+        if (result.status === 200) {
+            console.log('send');
+        }
     };
 
     render() {
         return (
             <Container className="tasks pt-5">
                 <AddNewTaskForm addingTaskToList={this.addingTaskToList}/>
-                <TaskList tasks={this.state.tasks} deleteTask={this.deleteTask} changeTaskName={this.changeTaskName}/>
+                <hr className="mb-5"/>
+                <TaskList headline="Tasks ohne festes Datum"
+                          tasks={this.state.tasks.filter(task => task.taskType === "taskWithoutDate")}
+                          deleteTask={this.deleteTask} changeTaskName={this.changeTaskName}/>
+                <Row>
+                    <Col xs={6}>
+                        <TaskList headline="Tasks mit Deadline heute"
+                                  tasks={this.state.tasks.filter(task => task.taskType === "taskDeadline")}
+                                  deleteTask={this.deleteTask} changeTaskName={this.changeTaskName}/>
+                    </Col>
+                    <Col xs={6}>
+                        <TaskList headline="Tasks mit Deadline 7 Tage"
+                                  tasks={this.state.tasks.filter(task => task.taskType === "taskDeadline")}
+                                  deleteTask={this.deleteTask} changeTaskName={this.changeTaskName}/>
+                    </Col>
+                </Row>
+
             </Container>
         )
     };

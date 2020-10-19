@@ -6,6 +6,8 @@ import {
     Form,
     InputGroup,
     Accordion,
+    Textarea,
+    FormControl
 } from "react-bootstrap";
 
 import {ReactComponent as Arrow} from '../../../svg/arrow.svg';
@@ -34,8 +36,7 @@ class TaskListItem extends React.Component {
         }
     };
 
-    render()
-    {
+    render() {
         const deleteTask = (e) => {
             e.preventDefault();
             const taskToDelete = e.target.getAttribute('data-task');
@@ -50,26 +51,33 @@ class TaskListItem extends React.Component {
                             <Form.Control id="changeTaskName" taskattr='taskName' data-task={this.props.task.taskName}
                                           defaultValue={this.props.task.taskName} onChange={this.handleTaskNameChange}
                                           className="border-0"/>
-                            <form className="position-absolute right" data-task={this.props.task.taskName} onSubmit={this.saveTaskNameChange}>
-                                <Button variant="link" className="taskListItem__saveButton" type="submit">speichern</Button>
+                            <form className="position-absolute right" data-task={this.props.task.taskName}
+                                  onSubmit={this.saveTaskNameChange}>
+                                <Button variant="link" className="taskListItem__saveButton"
+                                        type="submit">speichern</Button>
                             </form>
                         </InputGroup>
-                        {this.props.task.taskDescription ?
-                            <Accordion.Toggle as="button" variant="link" eventKey={this.props.task.taskName}
-                                              className="accordion__toggle">
-                                <Arrow/>
-                            </Accordion.Toggle> : ''}
+                        <Accordion.Toggle as="div" eventKey={this.props.task.taskName}>
+                            {this.props.task.taskDescription ? <Arrow className="accordion__toggle"/> :
+                                <Button variant="secondary">Beschreibung hinzufügen</Button>}
+                        </Accordion.Toggle>
                         <form data-task={this.props.task.taskName} onSubmit={deleteTask}>
                             <Button className="ml-auto" variant="danger" type="submit">Löschen</Button>
                         </form>
                     </div>
                 </ListGroup.Item>
-                {this.props.task.taskDescription ?
-                    <Accordion.Collapse eventKey={this.props.task.taskName}>
-                        <Card className="border-top-0">
-                            <Card.Body className="pl-4">{this.props.task.taskDescription}</Card.Body>
-                        </Card>
-                    </Accordion.Collapse> : ''}
+                <Accordion.Collapse eventKey={this.props.task.taskName}>
+                    <Card className="border-top-0">
+                        <Card.Body className="pl-4">
+                            <InputGroup>
+                                <FormControl as="textarea" aria-label="With textarea">{this.props.task.taskDescription}</FormControl>
+                                <InputGroup.Append>
+                                    <Button variant="success">speichern</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </Card.Body>
+                    </Card>
+                </Accordion.Collapse>
             </Accordion>
         )
     }
